@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  express_api:
+    container_name: express_api
+    image: express_api
+    build:
+      context: .
+    ports:
+      - '4000:4000'
+    environment:
+      - JWT_SECRET=secret
+      - PORT=4000
+    depends_on:
+      - dev_db
+      - test_db
+  dev_db:
+    container_name: postgres_db
+    image: 'postgres:12'
+    ports:
+      - '5433:5432'
+    environment:
+      - POSTGRES_USER=dev
+      - POSTGRES_PASSWORD=1234
+      - POSTGRES_DB=disney_api
+    volumes:
+      - nps_data:/var/lib/postgresql/data
+
+  test_db:
+    container_name: test_postgres_db
+    image: 'postgres:12'
+    ports:
+      - '5434:5432'
+    environment:
+      - POSTGRES_USER=test
+      - POSTGRES_PASSWORD=1234
+      - POSTGRES_DB=disney_api_test
+
+volumes:
+  nps_data: {}

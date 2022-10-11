@@ -1,0 +1,11 @@
+{
+  "database": {
+    "database": "disney_api_test",
+    "username": "test",
+    "password": "1234",
+    "host": "test_db",
+    "port": 5432,
+    "dialect": "postgres",
+    "logging": false
+  }
+}

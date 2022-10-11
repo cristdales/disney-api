@@ -1,0 +1,10 @@
+{
+  "database": {
+    "database": "disney_api",
+    "username": "dev",
+    "password": "1234",
+    "host": "dev_db",
+    "port": 5432,
+    "dialect": "postgres"
+  }
+}
