@@ -4,7 +4,7 @@ This is an API that allows you to explore the world of Disney by querying, creat
 
 ### The project is currently deployed at [https://alkemydisneyapi.fly.dev](https://alkemydisneyapi.fly.dev)
 
-It is **strongly recommended** to read the endpoint documentation published at [https://documenter.getpostman.com/view/12772916/2s83zjqNC5](https://documenter.getpostman.com/view/12772916/2s83zjqNC5)
+It is **strongly recommended** to read the endpoint documentation published at [https://documenter.getpostman.com/view/12772916/2s83zjtPgL](https://documenter.getpostman.com/view/12772916/2s83zjtPgL)
 
 ## Running the App Locally
 

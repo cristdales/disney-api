@@ -1,1016 +1,871 @@
 {
-	"info": {
-		"_postman_id": "9f1a8d36-0b17-41f8-8736-ca6796be1032",
-		"name": "Disney API",
-		"description": "Disney API permite explorar el mundo de Disney, a través de la consulta, creación y modificación, tanto de sus personajes como de las películas o series en las que participaron.",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
-	},
-	"item": [
-		{
-			"name": "Autenticación",
-			"item": [
-				{
-					"name": "Registro de Usuario",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"email\": \"dalessandro.cristhian@gmail.com\",\n    \"password\": \"1234abcd\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{base_url}}:{{port}}/auth/register",
-							"host": [
-								"{{base_url}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"auth",
-								"register"
-							]
-						},
-						"description": "Dado un email y una contraseña, se registra al usuario en el sistema y se le envía un mensaje de bienvenida por correo eléctronico."
-					},
-					"response": []
-				},
-				{
-					"name": "Inicio de Sesión",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"email\": \"dalessandro.cristhian@gmail.com\",\n    \"password\": \"1234abcd\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{base_url}}:{{port}}/auth/login",
-							"host": [
-								"{{base_url}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"auth",
-								"login"
-							]
-						},
-						"description": "Dadas las credenciales del usuario(email y contraseña), se retorna un token de autenticación con 2 horas de validéz."
-					},
-					"response": []
-				}
-			],
-			"description": "Para acceder a los endpoint de películas, series o géneros es necesario que el usuario se haya registrado y autenticado previamente.",
-			"event": [
-				{
-					"listen": "prerequest",
-					"script": {
-						"type": "text/javascript",
-						"exec": [
-							""
-						]
-					}
-				},
-				{
-					"listen": "test",
-					"script": {
-						"type": "text/javascript",
-						"exec": [
-							""
-						]
-					}
-				}
-			]
-		},
-		{
-			"name": "Películas o Series",
-			"item": [
-				{
-					"name": "Creación de Película o Serie",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "title",
-									"value": "",
-									"contentType": "",
-									"description": "Título de la película. CAMPO OBLIGATORIO",
-									"type": "text"
-								},
-								{
-									"key": "score",
-									"value": "",
-									"description": "Puntuación de la película entre 1 y 5",
-									"type": "text"
-								},
-								{
-									"key": "releaseDate",
-									"value": "",
-									"description": "Fecha de estreno en formato DD/MM/YYYY",
-									"type": "text"
-								},
-								{
-									"key": "img",
-									"description": "Imagen de la película (.jpg, .jpeg, .gif, .png) MAX 3MB",
-									"type": "file",
-									"src": []
-								},
-								{
-									"key": "genres",
-									"value": "",
-									"contentType": "",
-									"description": "Lista de genre IDs válidos. Los elementos de la lista deben ser agregados en campos INDIVIDUALES con la misma key(genres)",
-									"type": "text"
-								},
-								{
-									"key": "characters",
-									"value": "",
-									"description": "Lista de character IDs válidos. Los elementos de la lista deben ser agregados en campos INDIVIDUALES con la misma key(characters)",
-									"type": "text"
-								},
-								{
-									"key": "",
-									"value": "",
-									"type": "text",
-									"disabled": true
-								},
-								{
-									"key": "",
-									"value": "",
-									"type": "text",
-									"disabled": true
-								}
-							],
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{base_url}}:{{port}}/movies",
-							"host": [
-								"{{base_url}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"movies"
-							]
-						},
-						"description": "Se agrega una nueva película o serie al sistema con los datos provistos por el usuario.\n\nPara agregar más de un género o personaje, deben adjuntarse de forma separada con el mismo key.\nPor ejemplo para agregar una pelicula con genreIds 1 y 5 se deben agregar los campos (genres,1) y (genres,5)"
-					},
-					"response": [
-						{
-							"name": "Creación de Película o Serie",
-							"originalRequest": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "formdata",
-									"formdata": [
-										{
-											"key": "title",
-											"value": "Star Wars: The force awakens",
-											"contentType": "",
-											"description": "Título de la película. CAMPO OBLIGATORIO",
-											"type": "text"
-										},
-										{
-											"key": "score",
-											"value": "4",
-											"description": "Puntuación de la película entre 1 y 5",
-											"type": "text"
-										},
-										{
-											"key": "releaseDate",
-											"value": "17/12/2015",
-											"description": "Fecha de estreno en formato DD/MM/YYYY",
-											"type": "text"
-										},
-										{
-											"key": "img",
-											"description": "Imagen de la película (.jpg, .jpeg, .gif, .png) MAX 3MB",
-											"type": "file",
-											"src": "/home/cristhian/Downloads/starwarsforceawakens.jpeg"
-										},
-										{
-											"key": "genres",
-											"value": "1",
-											"contentType": "",
-											"description": "Lista de genre IDs válidos. Los elementos de la lista deben ser agregados en campos INDIVIDUALES con la misma key(genres)",
-											"type": "text"
-										},
-										{
-											"key": "genres",
-											"value": "3",
-											"description": "Lista de movie IDs válidos. Los elementos de la lista deben ser agregados en campos INDIVIDUALES con la misma key(characters)",
-											"type": "text"
-										},
-										{
-											"key": "characters",
-											"value": "4",
-											"type": "text"
-										},
-										{
-											"key": "characters",
-											"value": "5",
-											"type": "text"
-										}
-									],
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{base_url}}:{{port}}/movies",
-									"host": [
-										"{{base_url}}"
-									],
-									"port": "{{port}}",
-									"path": [
-										"movies"
-									]
-								}
-							},
-							"status": "Created",
-							"code": 201,
-							"_postman_previewlanguage": "plain",
-							"header": [
-								{
-									"key": "X-Powered-By",
-									"value": "Express"
-								},
-								{
-									"key": "Access-Control-Allow-Origin",
-									"value": "*"
-								},
-								{
-									"key": "Date",
-									"value": "Mon, 10 Oct 2022 23:46:11 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=5"
-								},
-								{
-									"key": "Content-Length",
-									"value": "0"
-								}
-							],
-							"cookie": [],
-							"body": null
-						}
-					]
-				},
-				{
-					"name": "Listado de Películas o Series",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{base_url}}:{{port}}/movies",
-							"host": [
-								"{{base_url}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"movies"
-							],
-							"query": [
-								{
-									"key": "genre",
-									"value": "",
-									"description": "Filtro por genre ID",
-									"disabled": true
-								},
-								{
-									"key": "name",
-									"value": "",
-									"description": "Filtro por nombre de película",
-									"disabled": true
-								},
-								{
-									"key": "order",
-									"value": "",
-									"description": "Order por fecha de estreno(ASC o DESC)",
-									"disabled": true
-								}
-							]
-						},
-						"description": "Lista las películas o series ingresadas en el sistema.\nEs posible filtrar por título o género, así como ordenar los resultados por fecha de creación en orden ascendente o descendente."
-					},
-					"response": []
-				},
-				{
-					"name": "Detalles de Película o Serie",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{base_url}}:{{port}}/movies/:id",
-							"host": [
-								"{{base_url}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"movies",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": ""
-								}
-							]
-						},
-						"description": "Dado el id de una película o serie, se devuelven todos los campos asociados a la película así como la lista de personajes que participan en la misma.\nEl campo img representa el path en el encuentra el recurso. Se puede recuperar el archivo a través del endpoint para descarga de imágenes."
-					},
-					"response": []
-				},
-				{
-					"name": "Edición de Película o Serie",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "title",
-									"value": "",
-									"description": "Título de la película",
-									"type": "text",
-									"disabled": true
-								},
-								{
-									"key": "score",
-									"value": "",
-									"description": "Puntuación de la película entre 1 y 5",
-									"type": "text",
-									"disabled": true
-								},
-								{
-									"key": "releaseDate",
-									"value": "",
-									"description": "Fecha de estreno en formato DD/MM/YYYY",
-									"type": "text",
-									"disabled": true
-								},
-								{
-									"key": "img",
-									"description": "Imagen de la película (.jpg, .jpeg, .gif, .png) MAX 3MB",
-									"type": "file",
-									"src": [],
-									"disabled": true
-								},
-								{
-									"key": "genres",
-									"value": "",
-									"description": "Lista de genre IDs válidos. Los elementos de la lista deben ser agregados en campos INDIVIDUALES con la misma key(genres)\n",
-									"type": "text",
-									"disabled": true
-								},
-								{
-									"key": "characters",
-									"value": "",
-									"description": "Lista de character  IDs válidos. Los elementos de la lista deben ser agregados en campos INDIVIDUALES con la misma key(characters)",
-									"type": "text",
-									"disabled": true
-								}
-							],
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{base_url}}:{{port}}/movies/:id",
-							"host": [
-								"{{base_url}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"movies",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": ""
-								}
-							]
-						},
-						"description": "Dado el id y los atributos a modificar, se editan los datos de la película o serie.\nPara desasociar todos los géneros o personajes de la serie debe enviarse vacío el campo genres o characters respectivamente. Para no modificar los valores actuales los campos no deben enviarse."
-					},
-					"response": []
-				},
-				{
-					"name": "Eliminación de Película o Serie",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "{{base_url}}:{{port}}/movies/:id",
-							"host": [
-								"{{base_url}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"movies",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": ""
-								}
-							]
-						},
-						"description": "Dado el id, se remueve la película o serie del sistema."
-					},
-					"response": []
-				}
-			],
-			"description": "Operaciones CRUD sobre las películas o series.",
-			"event": [
-				{
-					"listen": "prerequest",
-					"script": {
-						"type": "text/javascript",
-						"exec": [
-							""
-						]
-					}
-				},
-				{
-					"listen": "test",
-					"script": {
-						"type": "text/javascript",
-						"exec": [
-							""
-						]
-					}
-				}
-			]
-		},
-		{
-			"name": "Personajes",
-			"item": [
-				{
-					"name": "Creación de Personaje",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "name",
-									"value": "",
-									"description": "Nombre del personaje. CAMPO OBLIGATORIO",
-									"type": "text"
-								},
-								{
-									"key": "age",
-									"value": "",
-									"description": "Edad del personaje",
-									"type": "text"
-								},
-								{
-									"key": "weight",
-									"value": "",
-									"description": "Peso del personaje",
-									"type": "text"
-								},
-								{
-									"key": "history",
-									"value": "",
-									"description": "Historia del personaje",
-									"type": "text"
-								},
-								{
-									"key": "img",
-									"description": "Imagen del personaje  (.jpg, .jpeg, .gif, .png) MAX 3MB",
-									"type": "file",
-									"src": []
-								},
-								{
-									"key": "movies",
-									"value": "",
-									"description": "Lista de movie IDs en las que participa. Los elementos de la lista deben ser agregados en campos INDIVIDUALES con la misma key(movies)",
-									"type": "text"
-								}
-							],
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{base_url}}:{{port}}/characters",
-							"host": [
-								"{{base_url}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"characters"
-							]
-						},
-						"description": "Se agrega un nuevo personaje al sistema con los datos provistos por el usuario.\n\nPara agregar más de una película al personaje, deben adjuntarse de forma separada con el mismo key. Por ejemplo para agregar un personaje con movieIds 1 y 5 se deben agregar los campos (movies,1) y (movies,5)"
-					},
-					"response": []
-				},
-				{
-					"name": "Listado de Personajes",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{base_url}}:{{port}}/characters",
-							"host": [
-								"{{base_url}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"characters"
-							],
-							"query": [
-								{
-									"key": "movie",
-									"value": "",
-									"description": "Filtro por movie ID",
-									"disabled": true
-								},
-								{
-									"key": "age",
-									"value": "",
-									"description": "Filtro por edad de personaje",
-									"disabled": true
-								},
-								{
-									"key": "name",
-									"value": "",
-									"description": "Filtro por nombre de personaje",
-									"disabled": true
-								}
-							]
-						},
-						"description": "Lista los personajes ingresados en el sistema. Es posible filtrar por nombre, edad y película o serie en la que participaron."
-					},
-					"response": []
-				},
-				{
-					"name": "Detalles de Personaje",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{base_url}}:{{port}}/characters/:id",
-							"host": [
-								"{{base_url}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"characters",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": ""
-								}
-							]
-						},
-						"description": "Dado el id de un personaje o serie, se devuelven todos los campos asociados al personaje así como la lista de  películas o series en las que participó.\nEl campo img representa el path en el encuentra el recurso. Se puede recuperar el archivo a través del endpoint para descarga de imágenes."
-					},
-					"response": []
-				},
-				{
-					"name": "Edición de Personaje",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "name",
-									"value": "",
-									"description": "Nombre del personaje. CAMPO OBLIGATORIO",
-									"type": "text",
-									"disabled": true
-								},
-								{
-									"key": "age",
-									"value": "",
-									"description": "Edad del personaje",
-									"type": "text",
-									"disabled": true
-								},
-								{
-									"key": "weight",
-									"value": "",
-									"description": "Peso del personaje",
-									"type": "text",
-									"disabled": true
-								},
-								{
-									"key": "history",
-									"value": "",
-									"description": "Historia del personaje",
-									"type": "text",
-									"disabled": true
-								},
-								{
-									"key": "img",
-									"description": "Imagen del personaje  (.jpg, .jpeg, .gif, .png) MAX 3MB",
-									"type": "file",
-									"src": [],
-									"disabled": true
-								},
-								{
-									"key": "movies",
-									"value": "",
-									"description": "Lista de movie IDs en las que participa. Los elementos de la lista deben ser agregados en campos INDIVIDUALES con la misma key(movies)",
-									"type": "text",
-									"disabled": true
-								},
-								{
-									"key": "movies",
-									"value": "",
-									"type": "text",
-									"disabled": true
-								}
-							],
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{base_url}}:{{port}}/characters/:id",
-							"host": [
-								"{{base_url}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"characters",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": ""
-								}
-							]
-						},
-						"description": "Dado el id y los atributos a modificar, se editan los datos del personaje.\nPara desasociar todas las películas del personaje debe enviarse vacío el campo movies. Para no modificar el valor actual no se debe enviar el campo."
-					},
-					"response": []
-				},
-				{
-					"name": "Eliminación de Personaje",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "{{base_url}}:{{port}}/characters/:id",
-							"host": [
-								"{{base_url}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"characters",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": ""
-								}
-							]
-						},
-						"description": "Dado el id, se remueve el personaje del sistema."
-					},
-					"response": []
-				}
-			],
-			"description": "Operaciones CRUD sobre los personajes.",
-			"event": [
-				{
-					"listen": "prerequest",
-					"script": {
-						"type": "text/javascript",
-						"exec": [
-							""
-						]
-					}
-				},
-				{
-					"listen": "test",
-					"script": {
-						"type": "text/javascript",
-						"exec": [
-							""
-						]
-					}
-				}
-			]
-		},
-		{
-			"name": "Géneros",
-			"item": [
-				{
-					"name": "Creación de Género",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "name",
-									"value": "",
-									"description": "Genre name",
-									"type": "text"
-								},
-								{
-									"key": "img",
-									"description": "Character image (.jpg, .jpeg, .gif, .png) MAX 3MB",
-									"type": "file",
-									"src": []
-								}
-							],
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{base_url}}:{{port}}/genres",
-							"host": [
-								"{{base_url}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"genres"
-							]
-						},
-						"description": "Se agrega un nuevo género al sistema con el nombre provisto por el usuario."
-					},
-					"response": []
-				},
-				{
-					"name": "Listado de Géneros",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{base_url}}:{{port}}/genres",
-							"host": [
-								"{{base_url}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"genres"
-							]
-						},
-						"description": "Lista los géneros ingresados al sistema."
-					},
-					"response": []
-				},
-				{
-					"name": "Detalles de Género",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{base_url}}:{{port}}/genres/:id",
-							"host": [
-								"{{base_url}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"genres",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": ""
-								}
-							]
-						},
-						"description": "Dado el id de un personaje o serie, se devuelven todos los campos asociados al personaje así como la lista de películas o series en las que participó. \nEl campo img representa el path en el encuentra el recurso. Se puede recuperar el archivo a través del endpoint para descarga de imágenes."
-					},
-					"response": []
-				},
-				{
-					"name": "Edición de Género",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "name",
-									"value": "",
-									"description": "Genre name",
-									"type": "text"
-								},
-								{
-									"key": "img",
-									"description": "Character image (.jpg, .jpeg, .gif, .png) MAX 3MB",
-									"type": "file",
-									"src": []
-								}
-							],
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{base_url}}:{{port}}/genres/:id",
-							"host": [
-								"{{base_url}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"genres",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": ""
-								}
-							]
-						},
-						"description": "Dado el id y un nuevo nombre, se edita el género."
-					},
-					"response": []
-				},
-				{
-					"name": "Eliminación de Género",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "{{base_url}}:{{port}}/genres/:id",
-							"host": [
-								"{{base_url}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"genres",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": ""
-								}
-							]
-						},
-						"description": "Dado el id, se remueve el género del sistema."
-					},
-					"response": []
-				}
-			],
-			"description": "Operaciones CRUD sobre los géneros.",
-			"event": [
-				{
-					"listen": "prerequest",
-					"script": {
-						"type": "text/javascript",
-						"exec": [
-							""
-						]
-					}
-				},
-				{
-					"listen": "test",
-					"script": {
-						"type": "text/javascript",
-						"exec": [
-							""
-						]
-					}
-				}
-			]
-		},
-		{
-			"name": "Imágenes",
-			"item": [
-				{
-					"name": "Descarga de Imágenes",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{base_url}}:{{port}}/images/:image",
-							"host": [
-								"{{base_url}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"images",
-								":image"
-							],
-							"query": [
-								{
-									"key": "",
-									"value": null,
-									"disabled": true
-								}
-							],
-							"variable": [
-								{
-									"key": "image",
-									"value": ""
-								}
-							]
-						},
-						"description": "Dada su URL, se retorna la imagen solicitada.\nEl path de las imágenes se obtiene accediendo a los detalles de la película, personaje o género en cuestión."
-					},
-					"response": []
-				}
-			],
-			"description": "Las imágenes se encuentran accesible de forma estática conociendo el path que viene incluído en la información de las películas, personajes y géneros.",
-			"event": [
-				{
-					"listen": "prerequest",
-					"script": {
-						"type": "text/javascript",
-						"exec": [
-							""
-						]
-					}
-				},
-				{
-					"listen": "test",
-					"script": {
-						"type": "text/javascript",
-						"exec": [
-							""
-						]
-					}
-				}
-			]
-		}
-	],
-	"auth": {
-		"type": "bearer",
-		"bearer": [
-			{
-				"key": "token",
-				"value": "{{auth_token}}",
-				"type": "string"
-			}
-		]
-	},
-	"event": [
-		{
-			"listen": "prerequest",
-			"script": {
-				"type": "text/javascript",
-				"exec": [
-					""
-				]
-			}
-		},
-		{
-			"listen": "test",
-			"script": {
-				"type": "text/javascript",
-				"exec": [
-					""
-				]
-			}
-		}
-	]
+  "info": {
+    "_postman_id": "ad31fef7-b435-43b4-b923-6bd5078f3a23",
+    "name": "Disney API",
+    "description": "Disney API permite explorar el mundo de Disney, a través de la consulta, creación y modificación, tanto de sus personajes como de las películas o series en las que participaron.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Autenticación",
+      "item": [
+        {
+          "name": "Registro de Usuario",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"dalessandro.cristhian@gmail.com\",\n    \"password\": \"1234abcd\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}:{{port}}/auth/register",
+              "host": ["{{base_url}}"],
+              "port": "{{port}}",
+              "path": ["auth", "register"]
+            },
+            "description": "Dado un email y una contraseña, se registra al usuario en el sistema y se le envía un mensaje de bienvenida por correo eléctronico."
+          },
+          "response": []
+        },
+        {
+          "name": "Inicio de Sesión",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"dalessandro.cristhian@gmail.com\",\n    \"password\": \"1234abcd\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}:{{port}}/auth/login",
+              "host": ["{{base_url}}"],
+              "port": "{{port}}",
+              "path": ["auth", "login"]
+            },
+            "description": "Dadas las credenciales del usuario(email y contraseña), se retorna un token de autenticación con 2 horas de validéz."
+          },
+          "response": []
+        }
+      ],
+      "description": "Para acceder a los endpoint de películas, series o géneros es necesario que el usuario se haya registrado y autenticado previamente.",
+      "auth": {
+        "type": "noauth"
+      },
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "type": "text/javascript",
+            "exec": [""]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [""]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Películas o Series",
+      "item": [
+        {
+          "name": "Creación de Película o Serie",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "title",
+                  "value": "",
+                  "contentType": "",
+                  "description": "Título de la película. CAMPO OBLIGATORIO",
+                  "type": "text"
+                },
+                {
+                  "key": "score",
+                  "value": "",
+                  "description": "Puntuación de la película entre 1 y 5",
+                  "type": "text"
+                },
+                {
+                  "key": "releaseDate",
+                  "value": "",
+                  "description": "Fecha de estreno en formato DD/MM/YYYY",
+                  "type": "text"
+                },
+                {
+                  "key": "img",
+                  "description": "Imagen de la película (.jpg, .jpeg, .gif, .png) MAX 3MB",
+                  "type": "file",
+                  "src": []
+                },
+                {
+                  "key": "genres",
+                  "value": "",
+                  "contentType": "",
+                  "description": "Lista de genre IDs válidos. Los elementos de la lista deben ser agregados en campos INDIVIDUALES con la misma key(genres)",
+                  "type": "text"
+                },
+                {
+                  "key": "characters",
+                  "value": "",
+                  "description": "Lista de character IDs válidos. Los elementos de la lista deben ser agregados en campos INDIVIDUALES con la misma key(characters)",
+                  "type": "text"
+                },
+                {
+                  "key": "",
+                  "value": "",
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "",
+                  "value": "",
+                  "type": "text",
+                  "disabled": true
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}:{{port}}/movies",
+              "host": ["{{base_url}}"],
+              "port": "{{port}}",
+              "path": ["movies"]
+            },
+            "description": "Se agrega una nueva película o serie al sistema con los datos provistos por el usuario.\n\nPara agregar más de un género o personaje, deben adjuntarse de forma separada con el mismo key.\nPor ejemplo para agregar una pelicula con genreIds 1 y 5 se deben agregar los campos (genres,1) y (genres,5)"
+          },
+          "response": [
+            {
+              "name": "Creación de Película o Serie",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "title",
+                      "value": "Star Wars: The force awakens",
+                      "contentType": "",
+                      "description": "Título de la película. CAMPO OBLIGATORIO",
+                      "type": "text"
+                    },
+                    {
+                      "key": "score",
+                      "value": "4",
+                      "description": "Puntuación de la película entre 1 y 5",
+                      "type": "text"
+                    },
+                    {
+                      "key": "releaseDate",
+                      "value": "17/12/2015",
+                      "description": "Fecha de estreno en formato DD/MM/YYYY",
+                      "type": "text"
+                    },
+                    {
+                      "key": "img",
+                      "description": "Imagen de la película (.jpg, .jpeg, .gif, .png) MAX 3MB",
+                      "type": "file",
+                      "src": "/home/cristhian/Downloads/starwarsforceawakens.jpeg"
+                    },
+                    {
+                      "key": "genres",
+                      "value": "1",
+                      "contentType": "",
+                      "description": "Lista de genre IDs válidos. Los elementos de la lista deben ser agregados en campos INDIVIDUALES con la misma key(genres)",
+                      "type": "text"
+                    },
+                    {
+                      "key": "genres",
+                      "value": "3",
+                      "description": "Lista de movie IDs válidos. Los elementos de la lista deben ser agregados en campos INDIVIDUALES con la misma key(characters)",
+                      "type": "text"
+                    },
+                    {
+                      "key": "characters",
+                      "value": "4",
+                      "type": "text"
+                    },
+                    {
+                      "key": "characters",
+                      "value": "5",
+                      "type": "text"
+                    }
+                  ],
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}:{{port}}/movies",
+                  "host": ["{{base_url}}"],
+                  "port": "{{port}}",
+                  "path": ["movies"]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "plain",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 10 Oct 2022 23:46:11 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "0"
+                }
+              ],
+              "cookie": [],
+              "body": ""
+            }
+          ]
+        },
+        {
+          "name": "Listado de Películas o Series",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}:{{port}}/movies",
+              "host": ["{{base_url}}"],
+              "port": "{{port}}",
+              "path": ["movies"],
+              "query": [
+                {
+                  "key": "genre",
+                  "value": "",
+                  "description": "Filtro por genre ID",
+                  "disabled": true
+                },
+                {
+                  "key": "name",
+                  "value": "",
+                  "description": "Filtro por nombre de película",
+                  "disabled": true
+                },
+                {
+                  "key": "order",
+                  "value": "",
+                  "description": "Order por fecha de estreno(ASC o DESC)",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": "Lista las películas o series ingresadas en el sistema.\nEs posible filtrar por título o género, así como ordenar los resultados por fecha de creación en orden ascendente o descendente."
+          },
+          "response": []
+        },
+        {
+          "name": "Detalles de Película o Serie",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}:{{port}}/movies/:id",
+              "host": ["{{base_url}}"],
+              "port": "{{port}}",
+              "path": ["movies", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            },
+            "description": "Dado el id de una película o serie, se devuelven todos los campos asociados a la película así como la lista de personajes que participan en la misma.\nEl campo img representa el path en el encuentra el recurso. Se puede recuperar el archivo a través del endpoint para descarga de imágenes."
+          },
+          "response": []
+        },
+        {
+          "name": "Edición de Película o Serie",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "title",
+                  "value": "",
+                  "description": "Título de la película",
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "score",
+                  "value": "",
+                  "description": "Puntuación de la película entre 1 y 5",
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "releaseDate",
+                  "value": "",
+                  "description": "Fecha de estreno en formato DD/MM/YYYY",
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "img",
+                  "description": "Imagen de la película (.jpg, .jpeg, .gif, .png) MAX 3MB",
+                  "type": "file",
+                  "src": [],
+                  "disabled": true
+                },
+                {
+                  "key": "genres",
+                  "value": "",
+                  "description": "Lista de genre IDs válidos. Los elementos de la lista deben ser agregados en campos INDIVIDUALES con la misma key(genres)\n",
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "characters",
+                  "value": "",
+                  "description": "Lista de character  IDs válidos. Los elementos de la lista deben ser agregados en campos INDIVIDUALES con la misma key(characters)",
+                  "type": "text",
+                  "disabled": true
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}:{{port}}/movies/:id",
+              "host": ["{{base_url}}"],
+              "port": "{{port}}",
+              "path": ["movies", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            },
+            "description": "Dado el id y los atributos a modificar, se editan los datos de la película o serie.\nPara desasociar todos los géneros o personajes de la serie debe enviarse vacío el campo genres o characters respectivamente. Para no modificar los valores actuales los campos no deben enviarse."
+          },
+          "response": []
+        },
+        {
+          "name": "Eliminación de Película o Serie",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}:{{port}}/movies/:id",
+              "host": ["{{base_url}}"],
+              "port": "{{port}}",
+              "path": ["movies", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            },
+            "description": "Dado el id, se remueve la película o serie del sistema."
+          },
+          "response": []
+        }
+      ],
+      "description": "Operaciones CRUD sobre las películas o series.",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "type": "text/javascript",
+            "exec": [""]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [""]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Personajes",
+      "item": [
+        {
+          "name": "Creación de Personaje",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "name",
+                  "value": "",
+                  "description": "Nombre del personaje. CAMPO OBLIGATORIO",
+                  "type": "text"
+                },
+                {
+                  "key": "age",
+                  "value": "",
+                  "description": "Edad del personaje",
+                  "type": "text"
+                },
+                {
+                  "key": "weight",
+                  "value": "",
+                  "description": "Peso del personaje",
+                  "type": "text"
+                },
+                {
+                  "key": "history",
+                  "value": "",
+                  "description": "Historia del personaje",
+                  "type": "text"
+                },
+                {
+                  "key": "img",
+                  "description": "Imagen del personaje  (.jpg, .jpeg, .gif, .png) MAX 3MB",
+                  "type": "file",
+                  "src": []
+                },
+                {
+                  "key": "movies",
+                  "value": "",
+                  "description": "Lista de movie IDs en las que participa. Los elementos de la lista deben ser agregados en campos INDIVIDUALES con la misma key(movies)",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}:{{port}}/characters",
+              "host": ["{{base_url}}"],
+              "port": "{{port}}",
+              "path": ["characters"]
+            },
+            "description": "Se agrega un nuevo personaje al sistema con los datos provistos por el usuario.\n\nPara agregar más de una película al personaje, deben adjuntarse de forma separada con el mismo key. Por ejemplo para agregar un personaje con movieIds 1 y 5 se deben agregar los campos (movies,1) y (movies,5)"
+          },
+          "response": []
+        },
+        {
+          "name": "Listado de Personajes",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}:{{port}}/characters",
+              "host": ["{{base_url}}"],
+              "port": "{{port}}",
+              "path": ["characters"],
+              "query": [
+                {
+                  "key": "movie",
+                  "value": "",
+                  "description": "Filtro por movie ID",
+                  "disabled": true
+                },
+                {
+                  "key": "age",
+                  "value": "",
+                  "description": "Filtro por edad de personaje",
+                  "disabled": true
+                },
+                {
+                  "key": "name",
+                  "value": "",
+                  "description": "Filtro por nombre de personaje",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": "Lista los personajes ingresados en el sistema. Es posible filtrar por nombre, edad y película o serie en la que participaron."
+          },
+          "response": []
+        },
+        {
+          "name": "Detalles de Personaje",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}:{{port}}/characters/:id",
+              "host": ["{{base_url}}"],
+              "port": "{{port}}",
+              "path": ["characters", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            },
+            "description": "Dado el id de un personaje, se devuelven todos los campos asociados al personaje así como la lista de  películas o series en las que participó.\nEl campo img representa el path en el encuentra el recurso. Se puede recuperar el archivo a través del endpoint para descarga de imágenes."
+          },
+          "response": []
+        },
+        {
+          "name": "Edición de Personaje",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "name",
+                  "value": "",
+                  "description": "Nombre del personaje. CAMPO OBLIGATORIO",
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "age",
+                  "value": "",
+                  "description": "Edad del personaje",
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "weight",
+                  "value": "",
+                  "description": "Peso del personaje",
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "history",
+                  "value": "",
+                  "description": "Historia del personaje",
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "img",
+                  "description": "Imagen del personaje  (.jpg, .jpeg, .gif, .png) MAX 3MB",
+                  "type": "file",
+                  "src": [],
+                  "disabled": true
+                },
+                {
+                  "key": "movies",
+                  "value": "",
+                  "description": "Lista de movie IDs en las que participa. Los elementos de la lista deben ser agregados en campos INDIVIDUALES con la misma key(movies)",
+                  "type": "text",
+                  "disabled": true
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}:{{port}}/characters/:id",
+              "host": ["{{base_url}}"],
+              "port": "{{port}}",
+              "path": ["characters", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            },
+            "description": "Dado el id y los atributos a modificar, se editan los datos del personaje.\nPara desasociar todas las películas del personaje debe enviarse vacío el campo movies. Para no modificar el valor actual no se debe enviar el campo."
+          },
+          "response": []
+        },
+        {
+          "name": "Eliminación de Personaje",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}:{{port}}/characters/:id",
+              "host": ["{{base_url}}"],
+              "port": "{{port}}",
+              "path": ["characters", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            },
+            "description": "Dado el id, se remueve el personaje del sistema."
+          },
+          "response": []
+        }
+      ],
+      "description": "Operaciones CRUD sobre los personajes.",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "type": "text/javascript",
+            "exec": [""]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [""]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Géneros",
+      "item": [
+        {
+          "name": "Creación de Género",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "name",
+                  "value": "",
+                  "description": "Genre name",
+                  "type": "text"
+                },
+                {
+                  "key": "img",
+                  "description": "Character image (.jpg, .jpeg, .gif, .png) MAX 3MB",
+                  "type": "file",
+                  "src": []
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}:{{port}}/genres",
+              "host": ["{{base_url}}"],
+              "port": "{{port}}",
+              "path": ["genres"]
+            },
+            "description": "Se agrega un nuevo género al sistema con el nombre provisto por el usuario."
+          },
+          "response": []
+        },
+        {
+          "name": "Listado de Géneros",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}:{{port}}/genres",
+              "host": ["{{base_url}}"],
+              "port": "{{port}}",
+              "path": ["genres"]
+            },
+            "description": "Lista los géneros ingresados al sistema."
+          },
+          "response": []
+        },
+        {
+          "name": "Detalles de Género",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}:{{port}}/genres/:id",
+              "host": ["{{base_url}}"],
+              "port": "{{port}}",
+              "path": ["genres", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            },
+            "description": "Dado el id de un género, se devuelven todos los campos asociados al género. \nEl campo img representa el path en el encuentra el recurso. Se puede recuperar el archivo a través del endpoint para descarga de imágenes."
+          },
+          "response": []
+        },
+        {
+          "name": "Edición de Género",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "name",
+                  "value": "",
+                  "description": "Genre name",
+                  "type": "text"
+                },
+                {
+                  "key": "img",
+                  "description": "Character image (.jpg, .jpeg, .gif, .png) MAX 3MB",
+                  "type": "file",
+                  "src": []
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}:{{port}}/genres/:id",
+              "host": ["{{base_url}}"],
+              "port": "{{port}}",
+              "path": ["genres", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            },
+            "description": "Dado el id y un nuevo nombre, se edita el género."
+          },
+          "response": []
+        },
+        {
+          "name": "Eliminación de Género",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}:{{port}}/genres/:id",
+              "host": ["{{base_url}}"],
+              "port": "{{port}}",
+              "path": ["genres", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            },
+            "description": "Dado el id, se remueve el género del sistema."
+          },
+          "response": []
+        }
+      ],
+      "description": "Operaciones CRUD sobre los géneros.",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "type": "text/javascript",
+            "exec": [""]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [""]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Imágenes",
+      "item": [
+        {
+          "name": "Descarga de Imágenes",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}:{{port}}/images/:image",
+              "host": ["{{base_url}}"],
+              "port": "{{port}}",
+              "path": ["images", ":image"],
+              "query": [
+                {
+                  "key": "",
+                  "value": "",
+                  "disabled": true
+                }
+              ],
+              "variable": [
+                {
+                  "key": "image",
+                  "value": ""
+                }
+              ]
+            },
+            "description": "Dada su URL, se retorna la imagen solicitada.\nEl path de las imágenes se obtiene accediendo a los detalles de la película, personaje o género en cuestión."
+          },
+          "response": []
+        }
+      ],
+      "description": "Las imágenes se encuentran accesible de forma estática conociendo el path que viene incluído en la información de las películas, personajes y géneros.",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "type": "text/javascript",
+            "exec": [""]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [""]
+          }
+        }
+      ]
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{auth_token}}",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    }
+  ]
 }
